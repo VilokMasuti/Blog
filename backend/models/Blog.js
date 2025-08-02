@@ -1,21 +1,21 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, 'Title is required'],
       trim: true,
-      maxlength: 100,
+      maxlength: [100, 'Title cannot exceed 100 characters'],
     },
     content: {
       type: String,
-      required: true,
-      minlength: 10,
+      required: [true, 'Content is required'],
+      minlength: [10, 'Content must be at least 10 characters'],
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     tags: [
@@ -26,13 +26,15 @@ const blogSchema = new mongoose.Schema(
     ],
     status: {
       type: String,
-      enum: ["draft", "published"],
-      default: "published",
+      enum: ['draft', 'published'],
+      default: 'published',
     },
   },
   {
-    timestamps: true,
-  },
-)
+    timestamps: true, // This gives us createdAt and updatedAt automatically
+  }
+);
 
-export default mongoose.model("Blog", blogSchema)
+const Blog = mongoose.model('Blog', blogSchema);
+
+export default Blog;

@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+
 export const auth = async (req, res, next) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '');
