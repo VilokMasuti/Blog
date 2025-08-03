@@ -4,7 +4,7 @@ import User from '../models/User.js';
 
 
 export const genrateToken = (userid) => {
-  return jwt.sign({ userid }, process.env.JWT_SECRET_KEY, {
+  return jwt.sign({ userid }, process.env.JWT_SECRET, {
     expiresIn: '3d',
   });
 };
